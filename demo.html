@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <title>https的test111</title>
+  <!-- 同步载入 -->
+  <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+  <script>
+    // VConsole will be exported to `window.VConsole` by default.
+    var vConsole = new window.VConsole();
+  </script>
+  <script charset='UTF-8' src="https://cdn.jsdelivr.net/npm/sa-sdk-javascript@1.20.2/sensorsdata.min.js"></script>
+  <script charset="UTF-8">
+    var sensors = window['sensorsDataAnalytic201505'];
+    sensors.init({
+      server_url: 'https://sensors.hetao101.com/sa?project=production',
+      send_type: 'beacon',
+      show_log: true,
+      source_channel: ['efwe', 'sgh'],
+      heatmap: {
+        collect_tags: {
+          div: true
+        }
+      }
+    });
+
+    sensors.quick('autoTrack');
+
+  </script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .style1 {
+      background-image: url(./qq/12.jpeg);
+    }
+
+    .style2 {}
+
+    #wrap {
+      height: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-flex-flow: column;
+      flex-flow: column;
+    }
+
+    .topbar {
+      background: #00bf8a;
+      height: 50px;
+      border-bottom: 1px solid #fff;
+      line-height: 50px;
+      text-align: center;
+      color: rgb(111, 131, 171);
+      margin: 10px;
+
+    }
+
+    .headerbar {
+      height: 80px;
+      line-height: 80px;
+      color: #fff;
+      font-size: 25px;
+      background: #1BB17B;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <header></header>
+    <section>
+      <button id='theBtn11'>唤起app</button>
+      <a href='#qq'>215</a>
+      <div id="track1" class="topbar">
+        内嵌标签test：
+        <!-- <a href="javascript:;">222
+					<button id="btnid">333</button>
+				  <span>aaa</span>
+				</a>
+				<input type="text" value="111" id="input1"/> -->
+      </div>
+      <div id="track2" class="topbar">
+        其他类型元素自动采集：
+        <li data-sensors-click style="display: inline-block;">bbb</li>
+        <button data-sensors-click>btn</button>
+        <li q style="display: inline-block;height: 32px;background-color: antiquewhite;">ccc<span
+            style="background-color: aquamarine;">aa</span></li>
+        <p style="display: inline-block;">111<span q1 style="border: 1px solid #eee;">222</span></p>
+      </div>
+      <div id="aa" class="topbar">
+        代码埋点触发元素点击
+      </div>
+      <div class="topbar" sensors-disable="true">
+        附带属性
+      </div>
+      <div class="topbar" data="test">
+        通过标签特征判断是否增加自定义属性
+      </div>
+      <div id="set" class="topbar">
+        设置用户属性（set）
+      </div>
+      <div id="login" class="topbar">
+        用户关联（login）
+      </div>
+      <button>btn</button>
+      <div onmouseover="this.className='style1'" onmouseout="this.className='style2'"
+        style="width: 100px;height: 100px;background-color: aquamarine;"></div>
+      <input type="text" name="" id="wya">
+      <a href="https://chzzprjrs.github.io/" target="_black">
+        <div>
+          <div>
+            12454
+          </div>
+        </div>
+      </a>
+    </section>
+  </div>
+  <div>
+    <div>
+
+    </div>
+  </div>
+  <div id="wyy">124254</div>
+  <button data='test' id='aaaaaaaaa'>11</button>
+  <a href="" id="qq">qwfegrg</a>
+</body>
+
+<script type="text/javascript">
+  sensors.quick('useAppPlugin', {
+    deeplink: function (deeplink) {
+      deeplink.init({ timeout: 5000 }); // 等待唤起 App 的时间，默认 3000 ms
+      document.getElementById('theBtn11').addEventListener('click', function (e) {
+        console.log(1234)
+        e.preventDefault();
+        deeplink.openDeepLink();
+      });
+    }
+  })
+  var UA = function (n) {
+    var ua = 'Mozilla/5.0 Phone; CPU iPhonAppleWebKit/605 Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1', t, i, ch, buffer = [], ret = 0;
+
+    function xor(result, byte_array) {
+      var j, tmp = 0;
+      for (j = 0; j < byte_array.length; j++) {
+        tmp |= (buffer[j] << j * 8);
+      }
+      return result ^ tmp;
+    }
+
+    for (i = 0; i < ua.length; i++) {
+      ch = ua.charCodeAt(i);
+      buffer.unshift(ch & 0xFF);
+      if (buffer.length >= 4) {
+        ret = xor(ret, buffer);
+        buffer = [];
+      }
+    }
+
+    if (buffer.length > 0) {
+      ret = xor(ret, buffer);
+    }
+    console.log(ret.toString(16))
+    return ret.toString(16);
+  };
+  UA()
+
+  document.getElementById('wyy').onclick = function () {
+    console.log(1)
+    sensors.quick('trackHeatMap', this, {
+      $element_id: ''
+    }, function () {
+      console.log('callback');
+    });
+  }
+  // document.getElementById("track1").onclick = function () {
+  // 	//事件1埋点
+  // 	sensors.track('BuyProduct', {
+  // 		ProductName: "MacBook Pro", 
+  // 		ProductPrice: 123.45, 
+  // 		IsAddedToFav: false,
+  // 	});
+
+  // }
+  document.getElementById("qq").onclick = function () {
+    //用户关联
+    // sensors.login("wangyue")
+    sensors.login("wangyue1")
+
+
+  }
+  // document.getElementById("track2").onclick = function(){
+  // 	//事件2埋点
+  // 	sensors.logout()
+  // }
+  document.getElementById("set").onclick = function () {
+    //设置用户属性
+    sensors.setProfile({ email: 'wy@xxx' });
+    // sensors.appendProfile({catrgory: ['玉米','白菜']});
+    // sensors.appendProfile({catrgory: '玉米'});
+    sensors.incrementProfile('navClick');
+    sensors.unsetProfile('email');
+  }
+
+
+</script>
+
+</html>
