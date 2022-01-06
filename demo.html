@@ -20,7 +20,7 @@
       server_url: 'https://sensors.hetao101.com/sa?project=production',
       vtrack_url: './js/vtrack.min.js',
       send_type: 'beacon',
-      show_log: true,
+      show_log: false,
       source_channel: ['efwe', 'sgh'],
       heatmap: {
         collect_tags: {
@@ -31,7 +31,7 @@
 
     sensors.quick('autoTrack');
     window.addEventListener('message', function (e) {
-      console.log("postMessage", e)
+      console.log("子postMessage", e)
     });
   </script>
   <style>
