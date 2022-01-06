@@ -13,11 +13,12 @@
     // VConsole will be exported to `window.VConsole` by default.
     var vConsole = new window.VConsole();
   </script>
-  <script charset='UTF-8' src="https://cdn.jsdelivr.net/npm/sa-sdk-javascript@1.20.2/sensorsdata.min.js"></script>
+  <script charset='UTF-8' src="./js/sensorsdata.full.js"></script>
   <script charset="UTF-8">
     var sensors = window['sensorsDataAnalytic201505'];
     sensors.init({
       server_url: 'https://sensors.hetao101.com/sa?project=production',
+      vtrack_url: './js/vtrack.min.js',
       send_type: 'beacon',
       show_log: true,
       source_channel: ['efwe', 'sgh'],
@@ -29,8 +30,8 @@
     });
 
     sensors.quick('autoTrack');
-   window.addEventListener('message', function (e) {
-        console.log("postMessage",e)
+    window.addEventListener('message', function (e) {
+      console.log("postMessage", e)
     });
   </script>
   <style>
@@ -44,7 +45,6 @@
       background-image: url(./qq/12.jpeg);
     }
 
-    .style2 {}
 
     #wrap {
       height: 100%;
